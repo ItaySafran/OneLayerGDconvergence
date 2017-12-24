@@ -1,0 +1,12 @@
+We first ran 1000 gradient descent instantiations, training a single hidden layer network with n neurons, with respect to k standard unit vector targets.
+
+Each Matlab file newExp-k-n stores the experiment results after eliminating points that are equivalent up to symmetry, and then running our algorithm on the result. This is since running our algorithm on each of the 1000 points for all values of k,n is time consuming, therefore instead we identified points that are equivalent up to permutations on the order of neurons and of the data, to some small Euclidean norm difference. We thereafter ran the algorithm on a single representative from each such family of equivalent points. In the variables stored in these Matlab files, we store the result for running the algorithm on the representatives of each such family, and using the Lipschitzness of the objective and its Hessian to generalize the results for all members of such a family.
+
+For each k,n count represents the number of difference families obtained for that architecture. These files store the following variables:
+WbadNew - a k*n*count dimensional tensor, storing all the representative points of the resulting points returned by gradient descent.
+magnitude - a 1*count vector storing the number of points found for each family.
+maxFroDiff - a 1*count vector storing the maximal Frobenius (equivalent to the Euclidean norm when viewing a point as a 1 by k*n vector) difference between any two points found in the same family.
+lambdaMin - a 1*count vector storing a lower bound on the smallest eigenvalue of each family.
+objVals - a 1*count vector storing the objective value obtained by the particular representative of each family.
+r - a 1*count vector storing the maximal Euclidean distance of any member of a family from a local minimum. Negative values indicate that our algorithm could not have verified the existence of a local minimum close to the representative.
+deviations - a 1*count vector storing the maximal deviation in objective value of any member of a family in the ball of radius r centered at WbadNew(:,:,i). This also provides a bound on the objective value the local minimum in the vicinity of WbadNew(:,:,i) attains.
